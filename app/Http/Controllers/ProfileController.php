@@ -2,8 +2,6 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
-use phpDocumentor\Reflection\Types\Integer;
 use App\Models\UserProfileModel;
 use App\Services\UserDatabaseService;
 use App\Services\ProfileDatabaseServices;
@@ -77,15 +75,15 @@ class ProfileController extends Controller
                 // Check to see if the profile was updated
                 if($result)
                 {
-                    echo "Success";
                     return view('profile');
                 }
                 else
                 {
-                    echo "Fail";
                     return back();
                 }
-            }// End of if(is_int($userID) && $userID > 0)
+            }// End of if($udbs->DoesUserExistByID($userID))
+            else return back();
         }// End of if($request->isMethod('POST'))
+        else return back();
     } // End of function
 }

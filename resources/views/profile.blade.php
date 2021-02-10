@@ -3,14 +3,15 @@ use Illuminate\Support\Facades\Auth;
 use App\Services\ProfileDatabaseServices;
 use App\Services\UserDatabaseService;
 use phpDocumentor\Reflection\Types\Integer;
- // Get the currently signed in user
+ 
+// Get the currently signed in user
 $userID = auth()->id();
- // Check to see if the edit profile button was pressed
+// Check to see if the edit profile button was pressed
 if(isset($_POST['EditButton']))
 {
     redirect('editprofile');
 }
- // Check to see if there is a url paramater for userID
+// Check to see if there is a url paramater for userID
 if(isset($_GET['id']))
 {
     // Check to see if the parameter is an int
@@ -39,8 +40,6 @@ $username = $udbs->GetUsernameByID($userID);
         <title>Profile</title>
     </head>
     <body>
-    <h2><?php echo "authID: " . auth()->id(); ?></h2>
-    <h2><?php echo "authID is int: " . is_int(auth()->id()); ?></h2>
 		<table>
 			<!-- Name -->
 			<tr>
@@ -95,8 +94,8 @@ $username = $udbs->GetUsernameByID($userID);
 			<!-- Edit button -->
 			<?php //if($userID == auth()->id())
 			{?>
-    			<tr><button><a href="{{url('/editprofile')}}">Edit Profile</a></button>
-</form>
+    			<tr>
+    				<button><a href="{{url('/editprofile')}}">Edit Profile</a></button>
     			</tr>
 			<?php 
 			}?>
