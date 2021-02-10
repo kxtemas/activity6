@@ -88,12 +88,9 @@
                    Hello Admin
                 </div>
 
-                <div class="links">
-               
-                    <a href="">Job Listings</a>      
-                    <a href="">Blog</a>             
-                    <a href="">My Profile</a>
-                    <a href="{{ url('/userlist') }}">Admin Page</a>
+                <div class="links">                      
+                    <a href="{{ url('/update') }}">Edit Users</a>
+                    <a href="{{ url('/adminpanel') }}">Ban/Delete/Suspend Users</a>
                 </div>
             </div>
         </div>

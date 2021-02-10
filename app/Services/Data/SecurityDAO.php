@@ -3,7 +3,7 @@ namespace App\Services\Data;
 
 use App\User;
 use Illuminate\Support\Facades\Auth;
-
+ 
 class SecurityDAO{
 
     public function getAllUsersDAO(){

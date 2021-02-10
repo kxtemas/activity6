@@ -8,7 +8,7 @@ class SecurityService{
     public function getAllUsers(){
         return (new SecurityDAO())->getAllUsersDAO();
     }
-
+   
     public function getUser(){
         return (new SecurityDAO())->getUserDAO();
     }

@@ -15,11 +15,7 @@ class UserProfileModel
      * @var int
      */
     private $phoneNumber;
-    /**
-     * The user's date of birth
-     * @var DateTime
-     */
-    private $dateOfBirth;
+
     /**
      * The user's street address
      * @var string
@@ -77,14 +73,13 @@ class UserProfileModel
      * @param string $companyName
      * @param string $educationalBackground
      */
-    public function __construct(int $userID, int $phoneNumber, DateTime $dateOfBirth,
+    public function __construct(int $userID, int $phoneNumber,
                                 string $street, string $city, string $state,
                                 int $zipCode, string $employmentStatus, string $occupation,
                                 string $companyName, string $educationalBackground)
     {
         $this->userid = $userID;
         $this->phoneNumber = $phoneNumber;
-        $this->dateOfBirth = $dateOfBirth;
         $this->street = $street;
         $this->city = $city;
         $this->state = $state;
@@ -112,13 +107,7 @@ class UserProfileModel
         return $this->phoneNumber;
     }
     
-    /**
-     * @return DateTime
-     */
-    public function getDateOfBirth()
-    {
-        return $this->dateOfBirth;
-    }
+
     
     /**
      * @return string
@@ -197,8 +186,7 @@ class UserProfileModel
         // If the users phone numbers don't match
         if($this->phoneNumber != $model->getPhoneNumber()) return FALSE;
         
-        // If the users date of births don't match
-        if($this->dateOfBirth != $model->getDateOfBirth()) return FALSE;
+      
         
         // If the users streets don't match
         if($this->street != $model->getStreet()) return FALSE;

@@ -92,7 +92,7 @@
                
                     <a href="">JOB Listings</a>      
                     <a href="">Blog</a>             
-                    <a href="">My Profile</a>
+                    <a href="{{url('/profile')}}">My Profile</a>
                 </div>
             </div>
         </div>
