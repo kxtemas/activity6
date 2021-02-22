@@ -127,7 +127,7 @@ class ProfileDatabaseServices
         // Get the row data from the database
         $row = DB::table('userprofile')->where('UserID',$userID)->first();
         
-        // asign values to varables from the database data
+        // Asign values to varables from the database data
         $userID = $row->UserID;
         $phoneNumber = $row->PhoneNumber;
         $streetAddress = $row->Street;
