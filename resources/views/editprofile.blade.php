@@ -89,6 +89,20 @@ $profile = $pdbs->GetUserProfileByUserID($userID);
     						value="<?php echo $profile->getEducationalBackground(); ?>"/></td>
     			</tr>
     			
+    			<!-- Skills -->   			
+    			<tr>
+    				<td>Skills</td>
+    				<td><input type="text" name="skills" 
+    						value="<?php echo $profile->getSkillsList(); ?>"/></td>
+    			</tr>
+    			
+    			<!-- Job History -->   			
+    			<tr>
+    				<td>Job History</td>
+    				<td><input type="text" name="jobHistory" 
+    						value="<?php echo $profile->getJobHistory(); ?>"/></td>
+    			</tr>
+    			
     			<!-- Submit Button -->
     			<tr>
     				<td colspan="2" align="center">

@@ -8,37 +8,7 @@ use App\Services\ProfileDatabaseServices;
 
 class ProfileController extends Controller
 {
-    /**
-     * Reference code from Actitvy 2 (to be removed)
-     * @param Request $request
-     * @return \Illuminate\View\View|\Illuminate\Contracts\View\Factory
-     */
-    public function index(Request $request)
-    {
-        // Usage of path method
-        $path = $request->path();
-        echo 'Path Method:' . $path;
-        echo '<br>';
-        
-        // Usage of is method
-        $method = $request->isMethod('get') ? "GET" : "POST";
-        echo 'GET or POST Method: '.$method;
-        echo '<br>';
-        
-        $firstName = $request->input('firstname');
-        $lastName = $request->input('lastname');
-        echo "Your name is: " . $firstName . " " . $lastName;
-        echo '<br>';
-        
-        // Usage of url method
-        $url = $request->url();
-        echo 'URL method: '.$url;
-        echo '<br>';
-        
-        $data = ['firstName' => $firstName, 'lastName' => $lastName];
-        return view('thatswhoami')->with($data);
-    }
-    
+   
     public function update(Request $request)
     {
         // Get services
@@ -59,6 +29,8 @@ class ProfileController extends Controller
             $occupation = $request->input('occupation');
             $companyName = $request->input('companyName');
             $educationalBackground = $request->input('educationalBackground');
+            $skillsList = $request->input('skills');
+            $jobHistory = $request->input('jobHistory');
             
             // Check to see if the userID is valid user in the database
             if($udbs->DoesUserExistByID($userID))
@@ -67,7 +39,8 @@ class ProfileController extends Controller
                 $userProfile = new UserProfileModel($userID, $phoneNumber, 
                                                     $streetAddress, $city, $state, 
                                                     $zipCode, $employmentStatus, $occupation, 
-                                                    $companyName, $educationalBackground);
+                                                    $companyName, $educationalBackground,
+                                                    $skillsList, $jobHistory);
                 
                 // Update the database with profile
                 $result = $updbs->UpdateUserProfile($userProfile);

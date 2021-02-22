@@ -91,8 +91,22 @@ $username = $udbs->GetUsernameByID($userID);
 				<td>Educational Background</td>
 				<td><?php echo $profile->getEducationalBackground(); ?></td>
 			</tr>
+			
+			<!-- Skills -->   			
+			<tr>
+				<td>Skills</td>
+				<td><?php echo $profile->getSkillsList(); ?>"</td>
+			</tr>
+			
+			<!-- Job History -->   			
+			<tr>
+				<td>Job History</td>
+				<td><?php echo $profile->getJobHistory(); ?></td>
+			</tr>
+			
 			<!-- Edit button -->
 			<?php //if($userID == auth()->id())
+			    // TODO: Discover if this works or not
 			{?>
     			<tr>
     				<button><a href="{{url('/editprofile')}}">Edit Profile</a></button>
