@@ -56,7 +56,9 @@ class ProfileController extends Controller
                     $tagTranslate = new TagTranslatorService();
                     $tagDAO = new TagsDAO();
                     $tags = array();
-                    $tags = $tagTranslate->GetTagsFromString($userProfile->getSkillsList());
+                    $tags = $tagTranslate->GetTagsFromStringTEST($userProfile->getSkillsList());
+                    echo "Recived Tags:";
+                    print_r($tags);
                     $tagIDs = array();
                     
                     // Add found tags to the tag table
@@ -65,6 +67,7 @@ class ProfileController extends Controller
                         $tagDAO->AddNewTag($tag);
                         array_push($tagIDs, $tagDAO->GetTagIDByName($tag->getName()));
                     }
+                    
                     
                     // Add the tags to the usertags table
                     $userTagDAO = new UserTagsDAO();
