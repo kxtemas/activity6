@@ -59,10 +59,7 @@ class TagsDAO
         ];
         
         // Insert the tag into the table
-        $result = DB::table('tags')->insert($valuesArray);
-        
-        // Return result
-        return $result;
+        return DB::table('tags')->insert($valuesArray);
     }
     
     /**
