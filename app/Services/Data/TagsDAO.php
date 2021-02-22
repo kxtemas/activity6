@@ -20,6 +20,20 @@ class TagsDAO
     {
         return DB::table('tags')->where('ID', $id)->exists();
     }
+    
+    /**
+     * Gets the tag's ID by its name
+     * @param string $name
+     * @return boolean|number : FALSE-No tag was found | The tag ID
+     */
+    public function GetTagIDByName(string $name)
+    {
+        $row = DB::table('tags')->where('Name', $name)->first();
+        
+        if($row == null) return FALSE;
+        
+        return (int)$row->ID;
+    }
        
     /**
      * Gets the tag model from the table

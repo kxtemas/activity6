@@ -5,6 +5,10 @@ use Illuminate\Http\Request;
 use App\Models\UserProfileModel;
 use App\Services\UserDatabaseService;
 use App\Services\ProfileDatabaseServices;
+use App\Services\Business\TagTranslatorService;
+use App\Services\Data\TagsDAO;
+use App\Services\Data\UserTagsDAO;
+use App\Models\UserTagsModel;
 
 class ProfileController extends Controller
 {
@@ -48,6 +52,29 @@ class ProfileController extends Controller
                 // Check to see if the profile was updated
                 if($result)
                 {
+                    // Look through the skilsList for tags
+                    $tagTranslate = new TagTranslatorService();
+                    $tagDAO = new TagsDAO();
+                    $tags = array();
+                    $tags = $tagTranslate->GetTagsFromString($userProfile->getSkillsList());
+                    $tagIDs = array();
+                    
+                    // Add found tags to the tag table
+                    foreach($tags as $tag)
+                    {
+                        $tagDAO->AddNewTag($tag);
+                        array_push($tagIDs, $tagDAO->GetTagIDByName($tag->getName()));
+                    }
+                    
+                    // Add the tags to the usertags table
+                    $userTagDAO = new UserTagsDAO();
+                    $i = 0;
+                    foreach($tags as $tag)
+                    {
+                        $userTagDAO->AddNewUserTag(new UserTagsModel(0, auth()->id(), $tagIDs[$i]));
+                        $i++;
+                    }
+                    
                     return view('profile');
                 }
                 else
