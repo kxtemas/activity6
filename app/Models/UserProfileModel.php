@@ -1,8 +1,6 @@
 <?php
 namespace App\Models;
 
-use DateTime;
-
 class UserProfileModel
 {
     /**
@@ -57,13 +55,25 @@ class UserProfileModel
      */
     private $educationalBackground;
     
+    /**
+     * The user's list of skills
+     * @var string
+     */
+    private $skillsList;
+    
+    /**
+     * The user's job history
+     * @var string
+     */
+    private $jobHistory;
 
+
+    
 
     /**
      * 
      * @param int $userID
      * @param int $phoneNumber
-     * @param DateTime $dateOfBirth
      * @param string $street
      * @param string $city
      * @param string $state
@@ -72,11 +82,15 @@ class UserProfileModel
      * @param string $occupation
      * @param string $companyName
      * @param string $educationalBackground
+     * @param string $skillsList
+     * @param string $jobHistory
      */
     public function __construct(int $userID, int $phoneNumber,
                                 string $street, string $city, string $state,
-                                int $zipCode, string $employmentStatus, string $occupation,
-                                string $companyName, string $educationalBackground)
+                                int $zipCode, string $employmentStatus,
+                                string $occupation, string $companyName,
+                                string $educationalBackground, string $skillsList,
+                                string $jobHistory)
     {
         $this->userid = $userID;
         $this->phoneNumber = $phoneNumber;
@@ -88,6 +102,8 @@ class UserProfileModel
         $this->occupation = $occupation;
         $this->companyName = $companyName;
         $this->educationalBackground = $educationalBackground;
+        $this->skillsList = $skillsList;
+        $this->jobHistory = $jobHistory;
     }
     
     
@@ -106,8 +122,6 @@ class UserProfileModel
     {
         return $this->phoneNumber;
     }
-    
-
     
     /**
      * @return string
@@ -174,6 +188,24 @@ class UserProfileModel
     }
     
     /**
+     * @return string
+     */
+    public function getSkillsList()
+    {
+        return $this->skillsList;
+    }
+    
+    /**
+     * @return string
+     */
+    public function getJobHistory()
+    {
+        return $this->jobHistory;
+    }
+    
+    
+    
+    /**
      * Checks to see if the models are the same
      * @param UserProfileModel $model : The model to check against
      * @return boolean
@@ -185,8 +217,6 @@ class UserProfileModel
         
         // If the users phone numbers don't match
         if($this->phoneNumber != $model->getPhoneNumber()) return FALSE;
-        
-      
         
         // If the users streets don't match
         if($this->street != $model->getStreet()) return FALSE;
@@ -211,6 +241,12 @@ class UserProfileModel
         
         // If the users Educational Backgrounds don't match
         if($this->educationalBackground != $model->getEducationalBackground()) return FALSE;
+        
+        // If the users Skills don't match
+        if($this->skillsList != $model->getSkillsList()) return FALSE;
+        
+        // If the users Job History don't match
+        if($this->jobHistory != $model->getJobHistory()) return FALSE;
         
         // If all previous values match
         return TRUE;

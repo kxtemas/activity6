@@ -92,7 +92,9 @@ class ProfileDatabaseServices
             'EmploymentStatus' => $userProfile->getEmploymentStatus(),
             'Occupation' => $userProfile->getOccupation(),
             'CompanyName' => $userProfile->getCompanyName(),
-            'EducationalBackground' => $userProfile->getEducationalBackground()
+            'EducationalBackground' => $userProfile->getEducationalBackground(),
+            'Skills' => $userProfile->getSkillsList(),
+            'JobHistory' => $userProfile->getJobHistory()
         ];
         
         // Update the user's profile
@@ -136,12 +138,15 @@ class ProfileDatabaseServices
         $occupation = $row->Occupation;
         $companyName = $row->CompanyName;
         $educationalBackground = $row->EducationalBackground;
+        $skills = $row->Skills;
+        $jobHistory = $row->JobHistory;
         
         // Create the UserProfileModel object using the data and return it
         return new UserProfileModel($userID, $phoneNumber,
             $streetAddress, $city, $state,
             $zipCode, $employmentStatus, $occupation,
-            $companyName, $educationalBackground);
+            $companyName, $educationalBackground,
+            $skills, $jobHistory);
         
     }
     
