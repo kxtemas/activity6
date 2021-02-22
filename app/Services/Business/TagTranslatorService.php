@@ -18,7 +18,7 @@ class TagTranslatorService
     public function GetTagsFromString(string $input)
     {
         $tagsListS = array();
-        $charList = str_split($intput);
+        $charList = str_split($input);
         
         $x = 0;
         $tag = "";
