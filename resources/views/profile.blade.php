@@ -40,7 +40,13 @@ $username = $udbs->GetUsernameByID($userID);
         <title>Profile</title>
     </head>
     <body>
+
+    <h2><?php echo "authID: " . auth()->id(); ?></h2>
+    <h2><?php echo "authID is int: " . is_int(auth()->id()); ?></h2>
+		<table class = "center">
+
 		<table>
+
 			<!-- Name -->
 			<tr>
 				<td>Name</td>
@@ -108,9 +114,11 @@ $username = $udbs->GetUsernameByID($userID);
 			<?php //if($userID == auth()->id())
 			    // TODO: Discover if this works or not
 			{?>
-    			<tr>
-    				<button><a href="{{url('/editprofile')}}">Edit Profile</a></button>
-    			</tr>
+
+    			<tr class ="center"><button ><a href="{{url('/editprofile')}}">Edit Profile</a></button>
+</form>
+
+    		
 			<?php 
 			}?>
 		</table>

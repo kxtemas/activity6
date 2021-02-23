@@ -88,8 +88,9 @@
                    Hello Admin
                 </div>
 
-                <div class="links">                      
-                    <a href="{{ url('/update') }}">Edit Users</a>
+                <div class="links">     
+                	<a href="{{url('/jobpost')}}">Add Job Posting</a>                 
+                    <a href="{{ url('/joblist') }}">Job Listings</a>
                     <a href="{{ url('/adminpanel') }}">Ban/Delete/Suspend Users</a>
                 </div>
             </div>

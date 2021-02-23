@@ -4,6 +4,10 @@ namespace App\Services\Business;
 use App\Services\Data\SecurityDAO;
 
 class SecurityService{
+    
+    public function __construct(){
+        $this->securityDAO = new SecurityDAO();
+    }
 
     public function getAllUsers(){
         return (new SecurityDAO())->getAllUsersDAO();
@@ -26,6 +30,25 @@ class SecurityService{
 
     public function reactivateUser($id){
         return (new SecurityDAO())->reactivateUserDAO($id);
+    }
+    public function getAllJobs(){
+        return $this->securityDAO->getAllJobsDAO();
+    }
+    //Function to edit a job
+    public function updateJob($id, $targetValue, $updatedValue){
+        return $this->securityDAO->updateJobDAO($id, $targetValue, $updatedValue);
+    }
+    //Function to delete a job (no soft delete)
+    public function deleteJob($id){
+        return $this->securityDAO->deleteJobDAO($id);
+    }
+    //Function to create a job
+    public function addJob($title, $description, $location, $type, $pay, $company, $employment, $phone, $email){
+        return $this->securityDAO->addJobDAO($title, $description, $location, $type, $pay, $company, $employment, $phone, $email);
+    }
+    //Function to retrieve the job
+    public function getJob($id){
+        return $this->securityDAO->getJobDAO($id);
     }
 
 }

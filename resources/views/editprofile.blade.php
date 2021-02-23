@@ -26,9 +26,24 @@ $profile = $pdbs->GetUserProfileByUserID($userID);
     <head>
         <meta charset="ISO-8859-1">
         <title>Edit Profile</title>
+
+        <style>
+            tr, td {
+             
+                background-color: #636b6f;
+                font-family: 'Nunito', sans-serif;
+                font-weight: 200;
+                height: 100vh;
+                margin: 0;
+            }
+
+           
+            </style>
     </head>
-    <body>
-    
+    <body class="center">
+   
+
+   
         <form action="doeditprofile" method="post">
         	<input type="hidden" name="_token" value="<?php echo csrf_token()?>">
         	<input type="hidden" name="userID" value="<?php echo $profile->getUserid(); ?>">
@@ -88,13 +103,17 @@ $profile = $pdbs->GetUserProfileByUserID($userID);
     				<td><input type="text" name="educationalBackground" 
     						value="<?php echo $profile->getEducationalBackground(); ?>"/></td>
     			</tr>
-    			
+
+</table>
+     			
+
     			<!-- Skills -->   			
     			<tr>
     				<td>Skills</td>
     				<td><input type="text" name="skills" 
     						value="<?php echo $profile->getSkillsList(); ?>"/></td>
     			</tr>
+    			<br/>
     			
     			<!-- Job History -->   			
     			<tr>
@@ -106,10 +125,17 @@ $profile = $pdbs->GetUserProfileByUserID($userID);
     			<!-- Submit Button -->
     			<tr>
     				<td colspan="2" align="center">
-    					<input type="submit" value="Submit"/>
+    					<!-- Submit Button -->
+    			 
+                         <input type="hidden" name="_token" value="<?php echo csrf_token()?>">
+                         <input type="hidden" name="userID" value="<?php echo $profile->getUserid(); ?>">
+                            <button class="btn btn-info" type="submit">Submit</button>
+                            </tr>
+
     				</td>
     			</tr>
     		</table>
+
     	</form>
     
     </body>

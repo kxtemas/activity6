@@ -2,6 +2,7 @@
 namespace App\Services\Data;
 
 use App\User;
+use App\Job;
 use Illuminate\Support\Facades\Auth;
  
 class SecurityDAO{
@@ -37,6 +38,39 @@ class SecurityDAO{
     public function reactivateUserDAO($id){
         $user = $this->getUserByIDDAO($id);
         return $user->restore();
+    }
+    public function getAllJobsDAO()
+    {
+        return Job::all();
+    }
+    public function updateJobDAO($id, $targetValue, $updatedValue)
+    {
+        $job = $this->getJobDAO($id);
+        $job->$targetValue = $updatedValue;
+        return $job->save();
+    }
+    public function deleteJobDAO($id)
+    {
+        $job = $this->getJobDAO($id);
+        return $job->delete();
+    }
+    public function addJobDAO($title, $description, $location, $type, $pay, $company, $employment, $phone, $email)
+    {
+        $job = new Job();
+        $job->title = $title;
+        $job->description = $description;
+        $job->location = $location;
+        $job->pay_range = $pay;
+        $job->type = $type;
+        $job->company = $company;
+        $job->employment = $employment;
+        $job->phonenumber = $phone;
+        $job->email = $email;
+        return $job->save();
+    }
+    public function getJobDAO($id)
+    {
+        return Job::findOrFail($id);
     }
 
 }

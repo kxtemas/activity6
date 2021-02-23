@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\JobController;
+
 /*
  * |--------------------------------------------------------------------------
  * | Web Routes
@@ -27,6 +29,8 @@ Route::get('Blog', function () {return view('Blog');});
 Route::get('/editprofile', function() { return view('editprofile');});
 Route::post('/doeditprofile', 'ProfileController@update');
 Route::get('/profile', function () {return view('profile');});
+Route::get('/viewsjobs', 'NavigationController@showJobs');
+
 
 //admin routes
 Auth::routes();
@@ -38,9 +42,17 @@ Route::get('/dashboard', function () { return view('admin.dashboard'); }); });
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/userlist', function () {return view('admin.register-edit');});
 Route::get('/adminpanel', 'NavigationController@index');
+Route::get('/joblist', 'NavigationController@showJobAdmin');
+Route::get('/jobpost', function()  {return view('admin.jobpost');});
+Route::get('/jobedit', function()  {return view('admin.jobedit');});
+Route::get('/admin/jobs/edit', 'NavigationController@showJobUpdate')->name('admin.job.edit');
 Route::post('/admin/delete', 'AdminController@showDelete');
 Route::post('/admin/suspend', 'AdminController@showSuspend');
 Route::post('/admin/reactivate', 'AdminController@showReactivate');
+Route::post('admin/jobupdate', 'JobController@updateJob')->name('admin.job.update');
+Route::post('/admin/deletepost', 'JobController@deleteJob');
+Route::post('/admin/job/add', 'JobController@addJob')->name('job.add');
+
 
 
 
