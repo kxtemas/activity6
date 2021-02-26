@@ -39,7 +39,7 @@ class TagsDAO
      * Gets the tag model from the table
      * @param int $id : The model's id number
      * @return boolean|\App\Models\TagsModel
-     *  : FALSE-Tage does not exist | TagsModel-The requested TagsModel
+     *  : FALSE-Tag does not exist | TagsModel-The requested TagsModel
      */
     public function GetTagModelByID(int $id)
     {
