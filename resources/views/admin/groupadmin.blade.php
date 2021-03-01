@@ -1,4 +1,3 @@
-
 @extends('layouts.app')
  <style>
             html, body {
@@ -10,51 +9,39 @@
                 margin: 0;
             }
             </style>
-  @if(Auth::user()->usertype == 'admin')
-           
+             @if(Auth::user()->usertype == 'admin')
+            
 @section('content')
 
         <table class="table table-dark table-hover">
             <thead>
             <tr class="table-bordered border-light">
               
-                <th>Job Position</th>
-                <th>Company</th>
-                <th>Description</th>
-                <th>Location</th>
-                <th>Type</th>
-                <th>Pay Range</th>
-                <th>Employment Type</th>
-                <th>Contact Phone Number</th>
-                <th>Contact Email Address</th>
-              
+                <th>Group Name</th>
+                <th>Group Description</th>
+            
             </tr>
             </thead>
             <tbody>
-            @foreach($list as $job)
+            @foreach($list as $group)
                 <tr>
                   
-                    <td>{{$job->title}}</td>
-                    <td>{{$job->company}}</td>
-                    <td>{{$job->description}}</td>
-                    <td>{{$job->location}}</td>
-                    <td>{{$job->type}}</td>
-                    <td>{{$job->pay_range}}</td>
-                    <td>{{$job->employment}}</td>
-                    <td>{{$job->phonenumber}}</td>
-                    <td>{{$job->email}}</td>
+                    <td>{{$group->title}}</td>
+           
+                    <td>{{$group->description}}</td>
+                 
                     <td align="center">
                     
-    			<form action="{{route('admin.job.edit')}}" method="get">
+    			<form action="{{route('admin.group.edit')}}" method="get">
                             @csrf
-                            <input type="hidden" value="{{$job->id}}" name="id">
+                            <input type="hidden" value="{{$group->id}}" name="id">
                             <button class="btn btn-info" type="submit">Edit</button>
                         </form>
                     </td>
                     <td align="center">
-                        <form action="{{action('JobController@deleteJob')}}" method="post"> 
+                        <form action="{{action('GroupController@deleteGroup')}}" method="post"> 
                              @csrf 
-                             <input type="hidden" value="{{$job->id}}" name="id">
+                             <input type="hidden" value="{{$group->id}}" name="id">
                             <button class="btn btn-danger" type="submit">Delete</button> 
                       </form> 
                      </td> 

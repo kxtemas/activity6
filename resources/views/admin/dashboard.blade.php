@@ -90,8 +90,10 @@
 
                 <div class="links">     
                 	<a href="{{url('/jobpost')}}">Add Job Posting</a>                 
-                    <a href="{{ url('/joblist') }}">Job Listings</a>
+                  <a href="{{url('/grouppost')}}">Add Groups </a> 
                     <a href="{{ url('/adminpanel') }}">Ban/Delete/Suspend Users</a>
+                    <a href="{{ url('/grouplist') }}">Manage Groups</a>
+                     <a href="{{ url('/joblist') }}">Manage Jobs</a>
                 </div>
             </div>
         </div>

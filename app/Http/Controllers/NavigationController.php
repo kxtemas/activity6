@@ -43,4 +43,37 @@ class NavigationController extends Controller {
         return view('admin.jobedit')
             ->with('job', $job);
     }
+ 
+   public function showGroupUpdate(Request $request)
+    {
+        $id = $request->input('id');
+        $group = (new SecurityService())->getGroup($id);
+        return view('admin.groupedit')
+            ->with('group', $group);
+    }
+ public function showGroups(){
+        $group = DB::select('select * from groups');
+        $listOfGroups = (new SecurityService())->getAllGroups();
+        return view('viewsgroups',['groups'=>$group])->with('list', $listOfGroups);
+    }
+public function showGroupAdmin(){
+        $group = DB::select('select * from groups');
+        $listOfGroups = (new SecurityService())->getAllGroups();
+        return view('admin.groupadmin',['groups'=>$group])->with('list', $listOfGroups);
+    }
+ 
+    //Group Page
+    public function showGroupPage($id){
+        $group = (new SecurityService())->getGroupByID($id);
+        $listOfGroups = (new SecurityService())->getAllGroups();
+        return view('viewgroups')
+        ->with('group', $group)->with('list', $listOfGroups);
+      ;
+    }
+    public function showMembers(){
+        $members = DB::select('select * from members');
+        
+        return view('admin.register-edit',['members'=>$members]);
+    } 
+
 }

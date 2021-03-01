@@ -30,6 +30,13 @@ Route::get('/editprofile', function() { return view('editprofile');});
 Route::post('/doeditprofile', 'ProfileController@update');
 Route::get('/profile', function () {return view('profile');});
 Route::get('/viewsjobs', 'NavigationController@showJobs');
+Route::get('/search', 'NavigationController@showSearch')->name('search');
+Route::get('/viewsjobs', 'NavigationController@showJobs');
+Route::get('/memberships', 'NavigationController@showMemberships')->name('memberships');
+Route::get('/groups/{id}', 'NavigationController@showGroupPage')->name('group.page');
+Route::post('/group/join', 'GroupController@joinGroup')->name('group.join');
+Route::post('/group/leave', 'GroupController@leaveGroup')->name('group.leave');
+
 
 
 //admin routes
@@ -38,7 +45,7 @@ Auth::routes();
 Route::group(['middleware' => ['auth','admin']],
     function () {
         
-Route::get('/dashboard', function () { return view('admin.dashboard'); }); }); 
+        Route::get('/dashboard', function () { return view('admin.dashboard'); });  });
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/userlist', function () {return view('admin.register-edit');});
 Route::get('/adminpanel', 'NavigationController@index');
@@ -51,7 +58,15 @@ Route::post('/admin/suspend', 'AdminController@showSuspend');
 Route::post('/admin/reactivate', 'AdminController@showReactivate');
 Route::post('admin/jobupdate', 'JobController@updateJob')->name('admin.job.update');
 Route::post('/admin/deletepost', 'JobController@deleteJob');
+Route::post('/admin/group/add', 'GroupController@addGroup')->name('group.add');
+Route::post('admin/groupupdate', 'GroupController@updateGroup')->name('admin.group.update');
+Route::post('/admin/deletegroup', 'GroupController@deleteGroup');
 Route::post('/admin/job/add', 'JobController@addJob')->name('job.add');
+Route::get('/grouplist', 'NavigationController@showGroupAdmin');
+Route::get('/grouppost', function()  {return view('admin.grouppost');});
+Route::get('/groupedit', function()  {return view('admin.groupedit');});
+Route::get('/admin/groups/edit', 'NavigationController@showGroupUpdate')->name('admin.group.edit');
+
 
 
 

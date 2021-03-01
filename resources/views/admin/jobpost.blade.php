@@ -11,6 +11,7 @@
             }
             </style>
 @section('content')
+@if(Auth::user()->usertype == 'admin')
     <div class="card">
         <div class="card-header">
             <h2 class="h2 m-auto">{{__('Post a Job')}}</h2>
@@ -91,4 +92,8 @@
             </form>
         </div>
     </div>
+    @else
+        <h1 class="h1" align="center">Unauthorized Access</h1>
+    
+    @endif
 @endsection

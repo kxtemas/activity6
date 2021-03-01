@@ -9,6 +9,9 @@
                 margin: 0;
             }
             </style>
+            
+       
+                
 @section('content')
 
         <table class="table table-dark table-hover">
@@ -47,7 +50,12 @@
 
             </tbody>
 
-        </table>     
+        </table>  
+        
+                 
+
+                       
+             
   
 @endsection
                     
