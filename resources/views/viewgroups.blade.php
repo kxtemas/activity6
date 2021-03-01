@@ -18,6 +18,7 @@
               
                 <th>Group Name</th>
                 <th>Group Description</th>
+                <th> Members</th>
             
             </tr>
             </thead>
@@ -28,7 +29,9 @@
                     <td>{{$group->title}}</td>
            
                     <td>{{$group->description}}</td>
-                 
+                    @foreach($members as $mem)
+                    <td>{{$mem->UserID}
+                  @endforeach
                     <td align="center">
                     
     			 
@@ -47,6 +50,7 @@
                      </td> 
                 </tr>
             @endforeach
+           
 
             </tbody>
 

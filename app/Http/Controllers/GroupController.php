@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Services\Business\SecurityService;
 use Illuminate\Http\Request;
+use App\Services\Data\AffinityGroupUserDAO;
 
 class GroupController extends Controller
 {
@@ -42,6 +43,7 @@ class GroupController extends Controller
     //Delete Job
      public function deleteGroup(Request $request){
     $id = $request->input('id');
+    
     (new SecurityService())->deleteGroup($id);
     return view('admin.dashboard');
 }
@@ -56,7 +58,7 @@ class GroupController extends Controller
         //Leave group
         public function leaveGroup(Request $request){
             $id = $request->input('id');
-            (new SecurityService())->leaveGroup($id);
+            (new AffinityGroupUserDAO())->DeleteRowByID($id);
             echo("Successful Left Group");
             return view('welcome');
         }

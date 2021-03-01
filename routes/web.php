@@ -32,8 +32,7 @@ Route::get('/profile', function () {return view('profile');});
 Route::get('/viewsjobs', 'NavigationController@showJobs');
 Route::get('/search', 'NavigationController@showSearch')->name('search');
 Route::get('/viewsjobs', 'NavigationController@showJobs');
-Route::get('/memberships', 'NavigationController@showMemberships')->name('memberships');
-Route::get('/groups/{id}', 'NavigationController@showGroupPage')->name('group.page');
+Route::get('/groups/{id}', 'NavigationController@showGroupActions')->name('group.actions');
 Route::post('/group/join', 'GroupController@joinGroup')->name('group.join');
 Route::post('/group/leave', 'GroupController@leaveGroup')->name('group.leave');
 

@@ -4,6 +4,8 @@ use App\Services\Business\SecurityService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
+use App\Services\Data\AffinityGroupDAO;
+use App\Services\Data\AffinityGroupUserDAO;
 class NavigationController extends Controller {
     public function index(){
         $users = DB::select('select * from users');
@@ -63,17 +65,16 @@ public function showGroupAdmin(){
     }
  
     //Group Page
-    public function showGroupPage($id){
+    public function showGroupActions($id){
         $group = (new SecurityService())->getGroupByID($id);
         $listOfGroups = (new SecurityService())->getAllGroups();
+        $listOfMembers = (new AffinityGroupUserDAO())->GetRowIDsByGroupID($id);
+        $member = (new AffinityGroupUserDAO())->
         return view('viewgroups')
-        ->with('group', $group)->with('list', $listOfGroups);
-      ;
+        ->with('group', $group)->with('list', $listOfGroups)->with('members', $listOfMembers);
+      
     }
-    public function showMembers(){
-        $members = DB::select('select * from members');
-        
-        return view('admin.register-edit',['members'=>$members]);
-    } 
+   
+    
 
 }
