@@ -56,6 +56,7 @@ class NavigationController extends Controller {
  public function showGroups(){
         $group = DB::select('select * from groups');
         $listOfGroups = (new SecurityService())->getAllGroups();
+        
         return view('viewsgroups',['groups'=>$group])->with('list', $listOfGroups);
     }
 public function showGroupAdmin(){
@@ -66,13 +67,30 @@ public function showGroupAdmin(){
  
     //Group Page
     public function showGroupActions($id){
+       // $secService = new SecurityService();
+        //$members = DB::select('select * from members');
         $group = (new SecurityService())->getGroupByID($id);
-        $listOfGroups = (new SecurityService())->getAllGroups();
-        $listOfMembers = (new AffinityGroupUserDAO())->GetRowIDsByGroupID($id);
-        $member = (new AffinityGroupUserDAO())->
+       $listOfGroups = (new SecurityService())->getAllGroups();
+       $listofmembersIDS =(new AffinityGroupUserDAO())->GetRowIDsByGroupID($id);
+    //    $listOfMembers = (new SecurityService())->getMembers($listofmembersIDS);
+        //= (new AffinityGroupUserDAO())->GetRowIDsByGroupID($id);
+        
+      //  $listofmembers =(new AffinityGroupUserDAO())->GetRowIDsByGroupID($id);
+        //$member = (new AffinityGroupUserDAO())->GetRowModelByID($id);
+        
+//         $listOfMemberModels = array();
+        
+//         // loop through all of the retrived userIDs
+//         foreach ($listOfMemberIds as $memberID)
+//         {
+//             array_push($listOfMemberModels, $secService->getUserByID($memberID));
+//         }
+        
+        
+        
         return view('viewgroups')
-        ->with('group', $group)->with('list', $listOfGroups)->with('members', $listOfMembers);
-      
+        ->with('group', $group)->with('list', $listOfGroups)->with('members',$listofmembersIDS);
+        
     }
    
     

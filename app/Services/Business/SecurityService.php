@@ -16,6 +16,9 @@ class SecurityService{
     public function getUser(){
         return (new SecurityDAO())->getUserDAO();
     }
+    public function getUserByID(int $id){
+        return (new SecurityDAO())->getUserByIDDAO($id);
+    }
 
     public function updateUser($targetValue, $updatedValue){
         return (new SecurityDAO())->updateUserDAO($targetValue, $updatedValue);
@@ -81,5 +84,7 @@ class SecurityService{
     public function getGroupByID($id){
         return $this->securityDAO->getGroupByIDDAO($id);
     }
-    
+    public function getMembers($id){
+        return $this->securityDAO->getMembersDAO($id);
+    }
 }
