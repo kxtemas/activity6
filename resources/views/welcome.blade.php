@@ -91,7 +91,7 @@
                 <div class="links">
                
                     <a href="{{url('/viewsjobs')}}">Job Listings</a>      
-                   <a href="{{url('/groups/1')}}">Groups</a>             
+                   <a href="{{url('/viewgroups')}}">Groups</a>             
                     <a href="{{url('/profile')}}">My Profile</a>
                 </div>
             </div>

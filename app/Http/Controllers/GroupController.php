@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Services\Business\SecurityService;
 use Illuminate\Http\Request;
+use Throwable;
 use App\Services\Data\AffinityGroupUserDAO;
 
 class GroupController extends Controller
@@ -48,19 +49,33 @@ class GroupController extends Controller
     return view('admin.dashboard');
 }
    
-        //Join group
-        public function joinGroup(Request $request){
-            $id = $request->input('id');
-            (new SecurityService())->joinGroup($id);
-            echo("Successfully Joined");
-           return view('welcome');
-        }
+public function joinGroup(Request $request)
+{
+    $id = $request->input('id');
+    try {
+        (new SecurityService())->joinGroup($id);
+        return redirect()->route('group.actions', $id);
+    } catch (Throwable $e) {
+        return redirect()->route('group.actions', $id);
+    }
+}
+
         //Leave group
-        public function leaveGroup(Request $request){
+//         public function leaveGroup(Request $request){
+//             $id = $request->input('id');
+//             (new AffinityGroupUserDAO())->DeleteRowByID($id);
+//             echo("Successful Left Group");
+//             return view('welcome');
+//         }
+        public function leaveGroup(Request $request)
+        {
             $id = $request->input('id');
-            (new AffinityGroupUserDAO())->DeleteRowByID($id);
-            echo("Successful Left Group");
-            return view('welcome');
+            try {
+                (new SecurityService())->leaveGroup($id);
+                return redirect()->route('group.actions', $id);
+            } catch (Throwable $e) {
+                return redirect()->route('group.actions', $id);
+            }
         }
     }
 

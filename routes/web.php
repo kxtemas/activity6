@@ -35,6 +35,7 @@ Route::get('/viewsjobs', 'NavigationController@showJobs');
 Route::get('/groups/{id}', 'NavigationController@showGroupActions')->name('group.actions');
 Route::post('/group/join', 'GroupController@joinGroup')->name('group.join');
 Route::post('/group/leave', 'GroupController@leaveGroup')->name('group.leave');
+Route::get('/viewgroups', 'NavigationController@showGroups');
 
 
 

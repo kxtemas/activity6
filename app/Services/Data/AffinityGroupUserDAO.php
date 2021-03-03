@@ -183,7 +183,7 @@ use App\Models\AffinityGroupUserModel;
         if(!$this->DoesGroupHaveUsers($groupID)) return FALSE;
 
          // Get the row ids from the database
-        $results = DB::table($this->table)->where('GroupID', $groupID)->get('ID');
+        $results = DB::table($this->table)->where('GroupID', $groupID)->get('UserID');
 
          // Create results array
         $rows = array();
@@ -192,9 +192,10 @@ use App\Models\AffinityGroupUserModel;
         foreach($results as $row)
         {
             // Add row id to $rows array
-            array_push($rows, (int)$row->ID);
+            array_push($rows, (int)$row->UserID);
         }
-
+        
+       
          // return the row ids
         return $rows;
     }
@@ -241,6 +242,19 @@ use App\Models\AffinityGroupUserModel;
 
          if($result > 0) return TRUE;
         else return FALSE;
+    }
+    
+    public function GetNameByID($userid)
+    {
+        $results = DB::table('users')->where('id', $userid)->get('name');
+        $rows = array();
+        foreach($results as $row)
+        {
+            // Add row id to $rows array
+            array_push($rows, $row->name);
+        }
+        
+        return $rows;
     }
 
  }

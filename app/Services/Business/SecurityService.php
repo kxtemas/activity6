@@ -79,7 +79,7 @@ class SecurityService{
     }
     //Function to leave a group
     public function leaveGroup($id){
-        return $this->securityDAO->leaveGroupDAO($id);
+        return (new SecurityDAO())->leaveGroupDAO($id);
     }
     public function getGroupByID($id){
         return $this->securityDAO->getGroupByIDDAO($id);

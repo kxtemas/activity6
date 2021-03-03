@@ -126,22 +126,13 @@ class SecurityDAO{
     public function leaveGroupDAO($id)
     {
         $membership = Member::where('UserID', Auth::id())->where('GroupID', $id)->first();
-        return $membership->forceDelete();
+        return $membership->delete();
     }
     //get group info by id
     public function getGroupByIDDAO($id)
     {
         return Group::findOrFail($id);
     }
-    public function getMembersDAO($id)
-    {
-        $group = $this->getGroupByIDDAO($id);
-        $members = $group->members;
-        $users = [];
-        foreach ($members as $member) {
-            array_push($users, $member->user->id);
-        }
-        return $users;
-    }
+   
     
 }

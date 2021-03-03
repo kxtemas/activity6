@@ -24,7 +24,7 @@
             </tr>
             </thead>
             <tbody>
-            @foreach($list as $group)
+        
                 <tr>
                   
                     <td>{{$group->title}}</td>
@@ -34,30 +34,33 @@
                     <td align="center">
                     
     			 
-                    <form action="{{route('group.leave')}}" method="POST" style="display: inline">
+                    @if(in_array(Auth::id(), $userid))
+                     <form action="{{route('group.leave')}}" method="POST" style="display: inline">
                         @csrf
                         <input type="hidden" value="{{$group->id}}" name="id">
                         <button type="submit" class="btn btn-danger">{{__('Leave')}}</button>
                     </form>
+                     </td> 
+                     @else
                 
                     <form action="{{route('group.join')}}" method="POST" style="display: inline">
                         @csrf
                         <input type="hidden" value="{{$group->id}}" name="id">
                         <button type="submit" class="btn btn-success">{{__('Join')}}</button>
                     </form>
+                    @endif
                
-                     </td> 
                 
          
-             @foreach($members as $mem)
-                    <td>{{$mem}}
-                  @endforeach
-                   @endforeach
-</tr>
+      @foreach($members as $mem)
+			<td>{{$mem}}</td>   
+	         
+                       
+ 
             </tbody>
-
+ @endforeach
         </table>
-         
+       
     
 
     </div>
