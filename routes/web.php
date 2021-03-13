@@ -31,11 +31,13 @@ Route::post('/doeditprofile', 'ProfileController@update');
 Route::get('/profile', function () {return view('profile');});
 Route::get('/viewsjobs', 'NavigationController@showJobs');
 Route::get('/search', 'NavigationController@showSearch')->name('search');
-Route::get('/viewsjobs', 'NavigationController@showJobs');
 Route::get('/groups/{id}', 'NavigationController@showGroupActions')->name('group.actions');
 Route::post('/group/join', 'GroupController@joinGroup')->name('group.join');
 Route::post('/group/leave', 'GroupController@leaveGroup')->name('group.leave');
 Route::get('/viewgroups', 'NavigationController@showGroups');
+Route::get('/applyjobs', 'NavigationController@showJobs');
+Route::get('/jobs/{id}', 'NavigationController@showJobActions')->name('job.actions');
+Route::post('/job/apply', 'JobController@applyJob')->name('job.apply');
 
 
 

@@ -184,6 +184,9 @@ use App\Models\AffinityGroupUserModel;
 
          // Get the row ids from the database
         $results = DB::table($this->table)->where('GroupID', $groupID)->get('UserID');
+       
+       
+     
 
          // Create results array
         $rows = array();

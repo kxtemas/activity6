@@ -87,4 +87,14 @@ class SecurityService{
     public function getMembers($id){
         return $this->securityDAO->getMembersDAO($id);
     }
+    //apply job
+    public function applyJob($id){
+        return $this->securityDAO->applyJobDAO($id);
+    }
+    public function getJobByID($id){
+        return $this->securityDAO->getJobByIDDAO($id);
+    }
+    public function leaveJob($id){
+        return (new SecurityDAO())->leaveJobDAO($id);
+    }
 }

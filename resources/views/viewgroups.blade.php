@@ -56,7 +56,7 @@
 			<td>{{$mem}}</td>   
 	         
                        
- 
+ </tr>
             </tbody>
  @endforeach
         </table>

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 use App\Services\Business\SecurityService;
 use Illuminate\Http\Request;
+use Throwable;
 
 class JobController extends Controller
 {
@@ -65,4 +66,15 @@ class JobController extends Controller
  echo ("The Job Posting has been deleted.");
         return view('admin.dashboard');
     }
+
+public function applyJob(Request $request)
+{
+    $id = $request->input('id');
+    try {
+        (new SecurityService())->applyJob($id);
+        return redirect()->route('job.actions', $id);
+    } catch (Throwable $e) {
+        return redirect()->route('job.actions', $id);
+    }
+}
 }

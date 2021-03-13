@@ -39,7 +39,7 @@
                         @endif
                     </td>
                     <td>
-                     @if($user->usertype == NULL)
+                     @if($user->usertype == "user")
                             USER
                         @else
                             ADMIN

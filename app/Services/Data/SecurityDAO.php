@@ -6,6 +6,7 @@ use App\Member;
 use App\User;
 use App\Job;
 use Illuminate\Support\Facades\Auth;
+use App\Applicant;
  
 class SecurityDAO{
     
@@ -132,6 +133,49 @@ class SecurityDAO{
     public function getGroupByIDDAO($id)
     {
         return Group::findOrFail($id);
+    }
+    public function applyJobDAO($id)
+    {
+        $membership = new Applicant();
+        $membership->UserID = Auth::id();
+        $membership->JobID= $id;
+        return $membership->save();
+    }
+    public function getJobByIDDAO($id)
+    {
+        return Job::findOrFail($id);
+    }
+    public function leaveJobDAO($id)
+    {
+        $membership = Applicant::where('UserID', Auth::id())->where('JobID', $id)->first();
+        return $membership->delete();
+    }
+    public function DoesJobHaveApplicants(int $jobID)
+    {
+        return Applicant::where('JobID', $jobID)->exists();
+    }
+    
+    public function GetRowIDsByGroupID(int $jobID)
+    {
+        // Check to see if the group has users
+      //  if(!$this->DoesJobHaveApplicants($jobID)) return 0;
+        
+        // Get the row ids from the database
+        $results = Applicant::where('JobID', $jobID)->get('UserID');
+        
+        // Create results array
+        $rows = array();
+        
+        // Loop through all results
+        foreach($results as $row)
+        {
+            // Add row id to $rows array
+            array_push($rows, (int)$row->UserID);
+        }
+        
+     
+        // return the row ids
+        return $rows;
     }
    
     
