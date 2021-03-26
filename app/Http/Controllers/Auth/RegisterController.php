@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
+use App\Notifications\WelcomeEmailNotification;
 
 class RegisterController extends Controller
 {
@@ -39,6 +40,7 @@ class RegisterController extends Controller
     {
         $this->middleware('guest');
     }
+    
 
     /**
      * Get a validator for an incoming registration request.
@@ -63,10 +65,16 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        return User::create([
+        
+        $user= User::create([
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
         ]);
+        
+        $user->notify(new WelcomeEmailNotification());
+        
+        return $user;
+        
     }
 }
