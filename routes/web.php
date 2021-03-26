@@ -39,6 +39,18 @@ Route::get('/applyjobs', 'NavigationController@showJobs');
 Route::get('/jobs/{id}', 'NavigationController@showJobActions')->name('job.actions');
 Route::post('/job/apply', 'JobController@applyJob')->name('job.apply');
 
+Route::get('/jobsearch', function() {return view('job.jobsearch');});
+Route::post('/jobsearch/search', 'JobController@searchForJob')->name('job.search');
+
+Route::resource('/usersrest', 'UsersRestController');
+Route::resource('/jobsrest', 'JobsRestController');
+Route::get('/testapi', 'RestClientController@index');
+Route::get('/logout', 'LoginController@logout');
+Route::get('/loggingservice', 'TestLoggingController@index');
+
+
+
+
 
 
 //admin routes

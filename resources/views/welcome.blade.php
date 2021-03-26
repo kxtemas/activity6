@@ -93,6 +93,7 @@
                     <a href="{{url('/viewsjobs')}}">Job Listings</a>      
                    <a href="{{url('/viewgroups')}}">Groups</a>             
                     <a href="{{url('/profile')}}">My Profile</a>
+                        <a href="{{url('/jobsearch')}}">Job Search</a>
                 </div>
             </div>
         </div>
