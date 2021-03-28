@@ -47,9 +47,9 @@ Route::resource('/jobsrest', 'JobsRestController');
 Route::get('/testapi', 'RestClientController@index');
 Route::get('/logout', 'LoginController@logout');
 Route::get('/loggingservice', 'TestLoggingController@index');
-Route::resource('/usersrest', 'UsersRestController');
-Route::get('/usersrest', 'UsersRestController@index');
-Route::get('/usersrest/{id}', 'UsersRestController@show');
+
+
+
 
 
 

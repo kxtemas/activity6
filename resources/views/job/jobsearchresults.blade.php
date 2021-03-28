@@ -28,7 +28,14 @@
     </tr>
     </thead>
     <tbody>
+    
+
     @foreach($lists as $job)
+@if(!empty($job))
+
+@else
+<h5>no job results match</h5>
+@endif
    
         <tr>
           
@@ -47,7 +54,7 @@
         </tr>
     @endforeach
      @foreach($list as $job)
-   
+
         <tr>
           
             <td>{{$job->title}}</td>
@@ -63,6 +70,15 @@
                 </form>
               </td>
         </tr>
+        
+        @if(!empty($job))
+
+@else
+<h5>no job results match</h5>
+@endif
+      
+        
+   
     @endforeach
 
     </tbody>

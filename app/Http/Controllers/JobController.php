@@ -84,18 +84,10 @@ public function searchForJob(Request $request)
 {
     $keyword = $request->input('keyword');
     $jobsDAO = new JobsDAO();
-    
-    $query =
-    "SELECT *
-         FROM jobs
-         WHERE (title LIKE %$keyword%
-         OR description LIKE %$keyword%)";
-    
-    $job = DB::raw($query);
-    
+    $jobs= (new JobsDAO())->findJob($keyword);
     $listOfJobs = ($jobsDAO->getJobsByKeyword($keyword, 'title'));
     $listOfJob = ($jobsDAO->getJobsByKeyword($keyword, 'description'));
-    return view('job.jobsearchresults',['jobs'=>$job])->with('list', $listOfJobs)->with('lists',$listOfJob);
+    return view('job.jobsearchresults',['jobs'=>$jobs])->with('list', $listOfJobs)->with('lists',$listOfJob);
 }
 }
 

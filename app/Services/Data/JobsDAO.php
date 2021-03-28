@@ -163,5 +163,18 @@ class JobsDAO
         return $job->save();
     }
     
+    public function findJob($keyword)
+    {
+        
+        $query =
+        "SELECT *
+         FROM jobs
+         WHERE (title LIKE %$keyword%
+         OR description LIKE %$keyword%)";
+        
+       $job = DB::raw($query);
+       return $job;
+    }
+    
     
 }
