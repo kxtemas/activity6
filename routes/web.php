@@ -28,26 +28,28 @@ Route::get('Blog', function () {return view('Blog');});
 //profile module routes
 Route::get('/editprofile', function() { return view('editprofile');});
 Route::post('/doeditprofile', 'ProfileController@update');
-Route::get('/profile', function () {return view('profile');});
-Route::get('/viewsjobs', 'NavigationController@showJobs');
+Route::get('/profile', function () {return view('profile');})->middleware('auth');
+Route::get('/viewsjobs', 'NavigationController@showJobs')->middleware('auth');
 Route::get('/search', 'NavigationController@showSearch')->name('search');
 Route::get('/groups/{id}', 'NavigationController@showGroupActions')->name('group.actions');
 Route::post('/group/join', 'GroupController@joinGroup')->name('group.join');
 Route::post('/group/leave', 'GroupController@leaveGroup')->name('group.leave');
-Route::get('/viewgroups', 'NavigationController@showGroups');
-Route::get('/applyjobs', 'NavigationController@showJobs');
+Route::get('/viewgroups', 'NavigationController@showGroups')->middleware('auth');
+Route::get('/applyjobs', 'NavigationController@showJobs')->middleware('auth'); 
 Route::get('/jobs/{id}', 'NavigationController@showJobActions')->name('job.actions');
 Route::post('/job/apply', 'JobController@applyJob')->name('job.apply');
 
 Route::get('/jobsearch', function() {return view('job.jobsearch');});
 Route::post('/jobsearch/search', 'JobController@searchForJob')->name('job.search');
 
-Route::resource('/usersrest', 'UsersRestController');
+Route::resource('/usersrest', 'UsersRestController') ;
 Route::resource('/jobsrest', 'JobsRestController');
 Route::get('/testapi', 'RestClientController@index');
 Route::get('/logout', 'LoginController@logout');
 Route::get('/loggingservice', 'TestLoggingController@index');
-
+Route::resource('/usersrest', 'UsersRestController');
+Route::get('/usersrest', 'UsersRestController@index');
+Route::get('/usersrest/{id}', 'UsersRestController@show');
 
 
 
